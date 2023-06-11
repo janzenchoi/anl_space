@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --account=STARTUP-CHOIH
-#SBATCH --partition=bdwall
+#SBATCH --partition=bdws
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
 #SBATCH --time=01:00:00
