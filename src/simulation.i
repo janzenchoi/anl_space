@@ -16,8 +16,12 @@
     type = FileMeshGenerator
     file = "mesh.e"
   [../]
-  [./add_side_sets]
+  [./breakmesh]
     input = msh
+    type = BreakMeshByBlockGenerator
+  [../]
+  [./add_side_sets]
+    input = breakmesh
     type = SideSetsFromNormalsGenerator
     normals = '0 -1  0 
                0  1  0
@@ -61,6 +65,15 @@
         generate_output = 'elastic_strain_xx elastic_strain_yy elastic_strain_zz
                            strain_xx strain_yy strain_zz
                            cauchy_stress_xx cauchy_stress_yy cauchy_stress_zz'
+      [../]
+    [../]
+    [./CohesiveZoneMaster]
+      [./czm_ik]
+        boundary = 'interface'
+        strain = FINITE
+        generate_output = 'traction_x traction_y traction_z
+                           jump_x jump_y jump_z normal_traction
+                           tangent_traction normal_jump tangent_jump'
       [../]
     [../]
   [../]
@@ -110,6 +123,32 @@
 # ==================================================
 
 [AuxKernels]
+
+  # Material
+  [./a]
+    type = MaterialRealAux
+    boundary = 'interface'
+    property = a
+    execute_on = 'TIMESTEP_END'
+    variable = a
+    check_boundary_restricted = false
+  [../]
+  [./b]
+    type = MaterialRealAux
+    boundary = 'interface'
+    property = b
+    execute_on = 'TIMESTEP_END'
+    variable = b
+    check_boundary_restricted = false
+  [../]
+  [./D]
+    type = MaterialRealAux
+    boundary = 'interface'
+    property = interface_damage
+    execute_on = 'TIMESTEP_END'
+    variable = D
+    check_boundary_restricted = false
+  [../]
 
   # For crystal orientations (quaternion)
   [q1]
@@ -240,6 +279,13 @@
     large_kinematics = true
     euler_angle_reader = euler_angle_file
   [../]
+  [./ShamNeedleman]
+    type = GBCavitation
+    boundary = 'interface'
+    a0 = 4e-05
+    b0 = 0.059
+    D_failure = 0.9
+  [../]
 []
 
 # ==================================================
@@ -341,6 +387,20 @@
     type = ElementAverageValue
     variable = elastic_strain_zz
   [../]
+
+  # Mean Cavitation Model Variables
+  [./ma]
+    type = ElementAverageValue
+    variable = a
+  [../]
+  [./mb]
+    type = ElementAverageValue
+    variable = b
+  [../]
+  [./mD]
+    type = ElementAverageValue
+    variable = D
+  [../]
 []
 
 # ==================================================
@@ -365,7 +425,7 @@
 
   # Tolerances on linear solve
   l_max_its = 256
-  l_tol = 1e-4
+  l_tol = 1e-6
 
   # Tolerances on non-linear solve
   nl_max_its = 16
@@ -382,11 +442,11 @@
   dtmax = 10000000.0
 
   # Simulation speed up
-  residual_and_jacobian_together = true
-  [./Predictor]
-    type = SimplePredictor
-    scale = 1.0
-  [../]
+  # residual_and_jacobian_together = true
+  # [./Predictor]
+  #   type = SimplePredictor
+  #   scale = 1.0
+  # [../]
 
   # Timestep growth
   [./TimeStepper]
@@ -394,7 +454,7 @@
     growth_factor = 2
     cutback_factor = 0.5
     linear_iteration_ratio = 1000
-    optimal_iterations = 8
+    optimal_iterations = 12
     iteration_window = 1
     dt = 0.0001
   [../]
