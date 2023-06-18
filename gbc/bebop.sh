@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#SBATCH --account=STARTUP-CHOIH
-#SBATCH --partition=bdws
+#SBATCH --account=STARTUP-B324321
+#SBATCH --partition=bdwall
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
-#SBATCH --time=01:00:00
+#SBATCH --time=03-00:00:00
 
 source ~/.bashrc
 
