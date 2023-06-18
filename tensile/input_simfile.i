@@ -186,8 +186,8 @@
 [Functions]
   [./applied_load]
     type = PiecewiseLinear
-    x = '0 0.47'
-    y = '0 1500.0'
+    x = '0 4309.4'
+    y = '0 470'
   [../]
 []
 # ==================================================
@@ -388,9 +388,9 @@
 
   # Time variables
   start_time = 0
-  end_time = 0.47
+  end_time = 4309.4
   dtmin = 1e-10
-  dtmax = 0.1
+  dtmax = 1000
 
   [./Predictor]
     type = SimplePredictor
