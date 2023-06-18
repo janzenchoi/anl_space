@@ -3,7 +3,7 @@
 #SBATCH --account=STARTUP-B324321
 #SBATCH --partition=bdwall
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks-per-node=36
 #SBATCH --time=03-00:00:00
 
 source ~/.bashrc
