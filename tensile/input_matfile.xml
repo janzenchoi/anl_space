@@ -53,21 +53,21 @@
 				<surface type="IsoJ2"/>
 				<hardening type="VoceIsotropicHardeningRule">
 					<s0 type="ConstantInterpolate">
-						<v>271.44</v>
+						<v>265.971</v>
 					</s0>
 					<R type="ConstantInterpolate">
-						<v>1861.55</v>
+						<v>2334.54</v>
 					</R>
 					<d type="ConstantInterpolate">
-						<v>1.5523</v>
+						<v>1.09136</v>
 					</d>
 				</hardening>
 				<g type="GPowerLaw">
 					<n type="ConstantInterpolate">
-						<v>1.225</v>
+						<v>3.07055</v>
 					</n>
 					<eta type="ConstantInterpolate">
-						<v>5589.2</v>
+						<v>687.322</v>
 					</eta>
 				</g>
 			</flow>
