@@ -388,7 +388,7 @@
 
   # Time variables
   start_time = 0
-  end_time = 4500 # 4309.4
+  end_time = 4309.4
   dtmin = 1e-10
   dtmax = 1000
 
