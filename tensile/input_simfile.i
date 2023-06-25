@@ -186,7 +186,7 @@
 [Functions]
   [./applied_load]
     type = PiecewiseLinear
-    x = '0 4309.4'
+    x = '0 4309'
     y = '0 470'
   [../]
 []
@@ -388,9 +388,9 @@
 
   # Time variables
   start_time = 0
-  end_time = 4309.4
-  dtmin = 1e-10
-  dtmax = 1000
+  end_time = 4309.0
+  dtmin = 5e-07
+  dtmax = 500.0
 
   [./Predictor]
     type = SimplePredictor
@@ -401,10 +401,10 @@
     type = IterationAdaptiveDT
     growth_factor = 2
     cutback_factor = 0.5
-    linear_iteration_ratio = 1000
-    optimal_iterations = 8 #12
-    iteration_window = 1
-    dt = 0.001
+    linear_iteration_ratio = 25
+    optimal_iterations = 10 #12
+    iteration_window = 2
+    dt = 5.0
   [../]
 []
 # ==================================================
@@ -414,15 +414,15 @@
   print_linear_residuals = false
   perf_graph = true
   checkpoint = true
-    [./exodus]
+
+  [./exodus]
     type = Exodus
     file_base = 'output'
     elemental_as_nodal = true
     interval = 1
     execute_on = 'initial timestep_end'
-    #sync_only = true
-    #sync_times = '0 0.5 1'
   [../]
+
   [./console]
     type = Console
     show = 'dt mCS_xx mCS_yy mCS_zz mTE_xx mTE_yy mTE_zz'
@@ -430,6 +430,7 @@
     print_mesh_changed_info = true
     max_rows = 5
   [../]
+
   [./outfile]
     type = CSV
     file_base = 'output'
@@ -437,8 +438,6 @@
     delimiter = ','
     #interval = 1
     execute_on = 'initial timestep_end'
-    #sync_only = true
-    #sync_times = '0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0'
   [../]
 []
 
