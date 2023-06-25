@@ -11,11 +11,11 @@
 			<imodel type="AsaroInelasticity">
 				<rule type="PowerLawSlipRule">
 					<resistance type="VoceSlipHardening">
-						<tau_sat>327.87</tau_sat>
-						<b>0.6055</b>
-						<tau_0>81.31</tau_0>
+						<tau_sat>522.489</tau_sat>
+						<b>0.258374</b>
+						<tau_0>65.41575</tau_0>
 					</resistance>
-					<gamma0>0.001</gamma0>
+					<gamma0>0.0000363533</gamma0>
 					<n>15</n>
 				</rule>
 			</imodel>
@@ -53,21 +53,21 @@
 				<surface type="IsoJ2"/>
 				<hardening type="VoceIsotropicHardeningRule">
 					<s0 type="ConstantInterpolate">
-						<v>265.971</v>
+						<v>100.2765</v>
 					</s0>
 					<R type="ConstantInterpolate">
-						<v>2334.54</v>
+						<v>2060.54</v>
 					</R>
 					<d type="ConstantInterpolate">
-						<v>1.09136</v>
+						<v>1.307719</v>
 					</d>
 				</hardening>
 				<g type="GPowerLaw">
 					<n type="ConstantInterpolate">
-						<v>3.07055</v>
+						<v>15</v>
 					</n>
 					<eta type="ConstantInterpolate">
-						<v>687.322</v>
+						<v>286.853</v>
 					</eta>
 				</g>
 			</flow>
