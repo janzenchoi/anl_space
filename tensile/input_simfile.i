@@ -426,7 +426,7 @@
   [./console]
     type = Console
     show = 'dt mCS_xx mCS_yy mCS_zz mTE_xx mTE_yy mTE_zz'
-    output_linear = true
+    output_linear = false
     print_mesh_changed_info = true
     max_rows = 5
   [../]
