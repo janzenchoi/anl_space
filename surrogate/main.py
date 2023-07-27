@@ -13,8 +13,8 @@ def main():
     
     # Train
     surrogate = Surrogate()
-    input_dict, output_dict = reader.get_data(400)
-    surrogate.train(input_dict, output_dict, 100, 16)
+    input_dict, output_dict = reader.get_data(1000)
+    surrogate.train(input_dict, output_dict, 500, 16)
     
     # Predict
     input_dict, output_dict = reader.get_data(100)
